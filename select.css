@@ -1,0 +1,24 @@
+
+
+.select{display:inline-block;position:relative;cursor:pointer;vertical-align:middle;line-height:1;}
+.select.open{z-index:1;}
+
+.select div{position:fixed;top:0;left:0;bottom:0;right:0;background:#eeeeee99;cursor:default;}
+
+.select ul{position:absolute;top:100%;left:0;border:thin solid #ccc;background:#fff;margin:0;list-style:none;padding:0;border-radius:.2em;transition:transform .2s;transform:scale(0);transform-origin:0 0;max-height:70vh;overflow-y:auto;}
+.select.open ul{transform:scale(1);box-shadow:0 .1em .5em #99999966;}
+.select li{padding:.5em 1em;}
+.select li:hover{background:#00000009;}
+.select li.selected{color:#0033cc;}
+
+.select label{position:absolute;top:.42em;left:.3em;color:#999;transition:transform .2s;transform-origin:0 0;padding:0 .2em;}
+.select.open label, .select.selected label{transform:translate(0, -.85em) scale(.8);background:#fff;}
+
+.select span{position:relative;display:inline-block;padding:.2em .5em;height:1.4em;line-height:1.5;white-space:nowrap;overflow:hidden;border:thin solid transparent;border-color:#ccc;border-radius:.2em;background:#fff;width:10em;}
+
+.select b{position:absolute;right:.1em;top:.3em;padding:.2em .5em;background:#fff;}
+.select b:after{content:"\25be";/*"+";*/}
+.select.open b:after{content:"\25b4";/*"\2212";*/}
+
+.select:not(.open) div{display:none;}
+.select:not(.open) ul{visibility:hidden;}
