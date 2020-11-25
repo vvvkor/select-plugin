@@ -2,6 +2,8 @@
 
 JavaScript (ES6) select plugin.
 
+[Demo](https://vvvkor.github.io/select-plugin/)
+
 Features:
 
 - initialize with array or with data from asyncronous request
