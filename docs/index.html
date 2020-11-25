@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Select plugin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://gitcdn.link/repo/vvvkor/select-plugin/master/select.css">
+    <script src="https://gitcdn.link/repo/vvvkor/select-plugin/master/select.js"></script>
+		<script>
+			// fill, initial, get, set, clear, open, close, destroy
+			document.addEventListener('DOMContentLoaded', e => {
+				const selects = [];
+				document.querySelectorAll('input.selector').forEach(el => selects.push(new Select(el, {value: 2/*, items: [{id: 1, name: 111}, {id: 2, name: 222}]*/})));
+				selects.forEach(s => s.handle(v => console.log('handle', v)));
+				document.querySelectorAll('.control').forEach(el => el.addEventListener('click',
+					ee => {
+						ee.preventDefault();
+						const h = el.hash.substr(1);
+						const s = selects[1];
+						if(h == 'set') s.set(5);
+						else if(h == 'clear') s.clear();
+						else if(h == 'get') console.log('get selected value', s.get());
+						else if(h == 'open') s.open();
+						else if(h == 'close') s.close();
+						else if(h == 'destroy') s.destroy();
+					}, false));
+			}, false);
+		</script>
+  </head>
+  <body>
+	<main style="margin:1em auto;max-width:40em;">
+	<h1>Select plugin</h1>
+	<p>
+		Select: <input value="4" size="3" class="selector" data-src="https://jsonplaceholder.typicode.com/users" data-value="1" data-label="User">
+		<input size="3" class="selector" data-src="https://jsonplaceholder.typicode.com/todos" data-value="2" data-label="Todo">
+	</p>
+	<p>Control second select: 
+		<a href="#open" class="control">Open</a>
+		<a href="#close" class="control">Close</a>
+		<a href="#get" class="control">Get</a>
+		<a href="#set" class="control">Set</a>
+		<a href="#clear" class="control">Clear</a>
+		<a href="#destroy" class="control">Destroy</a>
+	</p>
+	<p><a href="https://github.com/vvvkor/select-plugin">select-plugin on GitHub</a></p>
+	</main>
+  </body>
+</html>
