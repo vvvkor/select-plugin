@@ -10,7 +10,7 @@
 			// fill, initial, get, set, clear, open, close, destroy
 			document.addEventListener('DOMContentLoaded', e => {
 				const selects = [];
-				document.querySelectorAll('input.selector').forEach(el => selects.push(new Select(el, {value: 2/*, items: [{id: 1, name: 111}, {id: 2, name: 222}]*/})));
+				document.querySelectorAll('input.selector, select.selector').forEach(el => selects.push(new Select(el, {value: 2/*, items: [{id: 1, name: 111}, {id: 2, name: 222}]*/})));
 				selects.forEach(s => s.handle(v => console.log('handle', v)));
 				document.querySelectorAll('.control').forEach(el => el.addEventListener('click',
 					ee => {
@@ -28,11 +28,18 @@
 		</script>
   </head>
   <body>
-	<main style="margin:1em auto;max-width:40em;">
+	<main style="margin:1em auto;max-width:40em;font:120%/1.5 'pt sans',sans-serif;">
 	<h1>Select plugin</h1>
 	<p>
 		Select: <input value="4" size="3" class="selector" data-src="https://jsonplaceholder.typicode.com/users" data-value="1" data-label="User">
 		<input size="3" class="selector" data-src="https://jsonplaceholder.typicode.com/todos" data-value="2" data-label="Todo">
+		<select class="selector" data-label="Select">
+			<option value="">Empty</option>
+			<option value=" ">Space</option>
+			<option value="0">Zero</option>
+			<option value="1">One</option>
+			<option value="2">Two</option>
+		</select>
 	</p>
 	<p>Control second select: 
 		<a href="#open" class="control">Open</a>

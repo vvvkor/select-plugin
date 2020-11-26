@@ -1,24 +1,29 @@
-
-
-.select{display:inline-block;position:relative;cursor:pointer;vertical-align:middle;line-height:1;}
+.select{display:inline-block;position:relative;cursor:pointer;vertical-align:middle;line-height:1;outline:none;}
 .select.open{z-index:1;}
 
+/*
 .select div{position:fixed;top:0;left:0;bottom:0;right:0;background:#eeeeee99;cursor:default;}
+.select:not(.open) div{display:none;}
+*/
 
-.select ul{position:absolute;top:100%;left:0;border:thin solid #ccc;background:#fff;margin:0;list-style:none;padding:0;border-radius:.2em;transition:transform .2s;transform:scale(0);transform-origin:0 0;max-height:70vh;overflow-y:auto;}
-.select.open ul{transform:scale(1);box-shadow:0 .1em .5em #99999966;}
+.select>ul{position:absolute;top:100%;left:0;max-height:70vh;overflow-y:auto;border:thin solid #ccc;border-radius:.2em;padding:0;margin:0;background:#fff;list-style:none;transition:transform .2s;transform:scale(0);transform-origin:0 0;}
+.select.open>ul{box-shadow:0 .1em .5em #99999966;transform:scale(1);}
+.select:not(.open)>ul{visibility:hidden;}
+.select:focus>span{box-shadow:0 0 0 .15em #cccccc66;}
 .select li{padding:.5em 1em;}
 .select li:hover{background:#00000009;}
+.select li.actual{background:#0000000f;}
 .select li.selected{color:#0033cc;}
 
-.select label{position:absolute;top:.42em;left:.3em;color:#999;transition:transform .2s;transform-origin:0 0;padding:0 .2em;}
-.select.open label, .select.selected label{transform:translate(0, -.85em) scale(.8);background:#fff;}
+.select>label{position:absolute;top:.42em;left:.3em;padding:0 .2em;color:#999;transition:transform .2s;transform-origin:0 0;}
+.select.open>label, .select.selected>label{background:#fff;transform:translate(0, -.85em) scale(.8);}
 
-.select span{position:relative;display:inline-block;padding:.2em .5em;height:1.4em;line-height:1.5;white-space:nowrap;overflow:hidden;border:thin solid transparent;border-color:#ccc;border-radius:.2em;background:#fff;width:10em;}
+.select>span{position:relative;display:inline-block;width:10em;height:1.4em;line-height:1.5;overflow:hidden;border:thin solid #ccc;border-radius:.2em;padding:.2em .5em;background:#fff;white-space:nowrap;}
 
-.select b{position:absolute;right:.1em;top:.3em;padding:.2em .5em;background:#fff;}
-.select b:after{content:"\25be";/*"+";*/}
-.select.open b:after{content:"\25b4";/*"\2212";*/}
+.select>b{position:absolute;right:0;top:.3em;padding:.2em .5em;background:#fff;border-right:thin solid transparent;background-clip:padding-box;}
+.select>b:after{content:"\25be";/*"+";*/}
+.select.open>b:after{content:"\25b4";/*"\2212";*/}
 
-.select:not(.open) div{display:none;}
-.select:not(.open) ul{visibility:hidden;}
+.select>a{position:absolute;z-index:1;right:1.5em;top:.5em;padding:0 .25em;background:#eee;border-radius:50%;transform:scale(1.2);}
+.select>a:after{content:"\d7";/*"\2a2f", "\2573"*/}
+.select:not(.open)>a{display:none;}

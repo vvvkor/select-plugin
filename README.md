@@ -6,7 +6,9 @@ JavaScript (ES6) select plugin.
 
 Features:
 
-- initialize with array or with data from asyncronous request
+- transforms native ``input``, ``select`` or ``div`` into custom select
+- populate from ``options``, from array, from asyncronous request
+- control with mouse or keyboard
 - set handler for value change
 - API (open, close, set, get, clear)
 - custom style
