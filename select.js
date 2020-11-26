@@ -73,11 +73,13 @@ class Select{
   }
   
   onKey(e) {
-    if (this.isOpen()) {
+    if (this.focused || this.isOpen()) {
       if (e.key == 'Delete' || e.key == 'Backspace') {
         this.clear();
         this.toggle(false);
       }
+    }
+    if (this.isOpen()) {
       if (e.key == 'Escape') {
         this.toggle(false);
       }

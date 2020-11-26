@@ -24,6 +24,6 @@
 .select>b:after{content:"\25be";/*"+";*/}
 .select.open>b:after{content:"\25b4";/*"\2212";*/}
 
-.select>a{position:absolute;z-index:1;right:1.5em;top:.5em;padding:0 .25em;background:#eee;border-radius:50%;transform:scale(1.2);}
+.select>a{position:absolute;z-index:1;right:1.5em;top:.45em;padding:0 .25em;background:#eee;border-radius:50%;transform:scale(1.25);}
 .select>a:after{content:"\d7";/*"\2a2f", "\2573"*/}
 .select:not(.open)>a{display:none;}
