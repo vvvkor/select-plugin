@@ -9,14 +9,15 @@ class Select{
   constructor(input, opt) {
     opt = opt ?? {}
     opt = {value: input.value, ...input.dataset, ...opt}; // last overrides first
-    this.input = input;
-    const el = document.createElement('div');
+    this.input = input.tagName.match(/input|select/i) ? input : null;
+    const el = this.input ? document.createElement('div') : input;
     el.className = 'select';
     el.tabIndex = "0";
     this.el = el;
-    this.input.hidden = true;
-    this.input.parentNode.insertBefore(el, this.input.nextSibling);
-
+    if (this.input) {
+      this.input.hidden = true;
+      this.input.parentNode.insertBefore(el, this.input.nextSibling);
+    }
     //this.overlay = el.appendChild(document.createElement('div'));
     this.list = el.appendChild(document.createElement('ul'));
     this.item = el.appendChild(document.createElement('span'));
@@ -24,6 +25,7 @@ class Select{
     this.icon = el.appendChild(document.createElement('b'));
     this.cross = el.appendChild(document.createElement('a'));
 
+    if (opt.size) this.item.style.width = parseInt(opt.size, 10) + 'em';
     this.label.textContent = opt.label ?? '';
     //this.toggle(false);
     if (opt.items) {
@@ -37,8 +39,8 @@ class Select{
         .then(() => this.set(opt.value))
     }
     else if (input.options) {
-      this.fill(input.options);
-      this.set(input.value)
+      this.fill(opt.items ?? input.options);
+      this.set(opt.value ?? input.value)
     }
     el.addEventListener('focus', e => this.focused = true, false);
     el.addEventListener('blur', e => { this.focused = false; this.close(); }, false);
@@ -108,13 +110,13 @@ class Select{
   
   set(v) {
     const i = (v === null)
-      ? -1
+      ? (this.input?.options?.length > 0 ? 0 : -1)
       : this.items.findIndex(item => item.id == v);
     this.cur = i;
     const filled = (i > -1);
     this.el.classList[filled ? 'add' : 'remove']('selected');
     this.item.textContent = filled ? this.items[i].title : '';
-    this.input.value = filled ? this.items[i].id : '';
+    if (this.input) this.input.value = filled ? this.items[i].id : '';
     this.actuate();
     if (this.handler) this.handler({item: this.get(), target: this});
   }
@@ -170,7 +172,7 @@ class Select{
   }
   
   destroy() {
-    this.input.hidden = false;
+    if (this.input) this.input.hidden = false;
     this.el.parentNode.removeChild(this.el);
   }
   
