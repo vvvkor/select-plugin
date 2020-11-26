@@ -10,7 +10,7 @@ JavaScript (ES6) select plugin.
 - populate from ``options``, from array, from asyncronous request
 - control with mouse or keyboard
 - set handler for value change
-- API (open, close, set, get, clear)
+- API (open, close, set, get, clear, destroy)
 - custom style
 - floating label
 
@@ -44,8 +44,8 @@ Options passed to constructor will override ``data-`` attributes and ``options``
 ## API
 
 ```javascript
-// initialize
-let select = new Select(element, options); // options are optional
+// initialize; options are optional
+let select = new Select(element, options);
 
 // open list
 select.open();
