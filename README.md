@@ -27,8 +27,8 @@ Optional ``data-`` attributes:
 
 Initialize with 
 
-```
-new Select(element, options);
+```javascript
+new Select(element, options); // options are optional
 ```
 
 ### Options
@@ -39,3 +39,18 @@ Options passed to constructor will override ``data-`` attributes and ``options``
 - ``value`` - initial value
 - ``src`` - URL to fetch list of items
 - ``items`` - visual size in ``em``s
+
+
+## API
+
+```javascript
+let select = new Select(element, options);
+
+select.open(); // open list
+select.close(); // close list
+select.set(value); // set value
+select.get(); // get selected item
+select.clear(); // clear selection
+select.destroy(); // remove custom element
+select.handle(function({item, target}) { /* code */}); // set change handler
+```
