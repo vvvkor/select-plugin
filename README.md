@@ -8,9 +8,9 @@ JavaScript (ES6) custom select plugin without dependencies.
 
 - transforms native ``input``, ``select`` or ``div`` into custom select
 - populate list
-  - from ``options`` of ``select`` element
-	- from array
-	- from asyncronous request
+  - from ``option``s of ``select`` element
+  - from array
+  - from asyncronous request
 - control with mouse or keyboard
 - set handler for value change
 - API (open, close, set, get, clear, destroy)
@@ -27,7 +27,7 @@ Include style and script in the ``head`` of your document:
 <script src="select.js"></script> 
 ```
 
-Initialize select with:
+Initialize element with:
 
 ```javascript
 new Select(element, options);
@@ -37,16 +37,18 @@ The *element* can be ``input``, ``select`` or ``div`` element.
 
 ### Element attributes
 
-Optional attributes of converted elements:
+Optional attributes of converted element:
 
 - **data-label** - label text
 - **data-value** - initial value (for ``div`` or ``input``)
 - **data-src** - URL to fetch array of items (for ``div`` or ``input``)
 - **data-size** - visual size in *em*s
 
+For ``select`` element, array of items and initial value are obtained from ``option`` tags.
+
 ### Constructor options
 
-Options passed to constructor will override ``data-`` attributes and ``options`` of ``select`` element.
+Options passed to constructor will override ``data-`` attributes and ``option``s of ``select`` element.
 
 The *options* object may include following keys:
 
@@ -54,12 +56,12 @@ The *options* object may include following keys:
 - **items** - array of items
 - **value** - initial value
 - **src** - URL to fetch array of items
-- **size** - visual size in ``em``s
+- **size** - visual size in *em*s
 
 ## API
 
 ```javascript
-// initialize; options are optional
+// initialize (options object is optional)
 let select = new Select(element, options);
 
 // open list
