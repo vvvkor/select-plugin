@@ -60,11 +60,11 @@ The *options* object may include following keys:
 
 ### Items structure
 
-Data passed in *items* option, as well as data fetched from *src* URL,
+Data passed in **items** option, as well as data fetched from **src** URL,
 should be structured as array of objects, each containing keys for value and label.
 
-Value is looked for in keys **value** and **id**.
-Label is looked for in keys **label**, **title** and **name**.
+- Value is looked for in keys **value** and **id**.
+- Label is looked for in keys **label**, **title** and **name**.
 
 ## API
 

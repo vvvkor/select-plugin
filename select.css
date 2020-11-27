@@ -1,11 +1,6 @@
 .select{display:inline-block;position:relative;cursor:pointer;vertical-align:middle;line-height:1;outline:none;}
 .select.open{z-index:1;}
 
-/*
-.select div{position:fixed;top:0;left:0;bottom:0;right:0;background:#eeeeee99;cursor:default;}
-.select:not(.open) div{display:none;}
-*/
-
 .select>ul{position:absolute;top:100%;left:0;max-height:70vh;overflow-y:auto;border:thin solid #ccc;border-radius:.2em;padding:0;margin:0;background:#fff;list-style:none;transition:transform .2s;transform:scale(0);transform-origin:0 0;}
 .select.open>ul{box-shadow:0 .1em .5em #99999966;transform:scale(1);}
 .select:not(.open)>ul{visibility:hidden;}
@@ -27,3 +22,8 @@
 .select>a{position:absolute;z-index:1;right:1.5em;top:.45em;padding:0 .25em;background:#eee;border-radius:50%;transform:scale(1.25);}
 .select>a:after{content:"\d7";/*"\2a2f", "\2573"*/}
 .select:not(.open)>a{display:none;}
+
+/*
+.select div{position:fixed;top:0;left:0;bottom:0;right:0;background:#eeeeee99;cursor:default;}
+.select:not(.open) div{display:none;}
+*/
