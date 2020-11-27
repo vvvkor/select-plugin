@@ -66,6 +66,22 @@ should be structured as array of objects, each containing keys for value and lab
 - Value is looked for in keys **value** and **id**.
 - Label is looked for in keys **label**, **title** and **name**.
 
+Example: 
+
+```json
+[
+  {
+    "value": "1",
+    "label": "One",
+    "anything": "info"
+  },
+  {
+    "id": "2",
+    "title": "Two"
+  }
+]
+```
+
 ## API
 
 ```javascript
