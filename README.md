@@ -1,45 +1,60 @@
 # Select plugin
 
-JavaScript (ES6) select plugin.
+JavaScript (ES6) custom select plugin without dependencies.
 
 [Demo](https://vvvkor.github.io/select-plugin/)
 
 ## Features
 
 - transforms native ``input``, ``select`` or ``div`` into custom select
-- populate from ``options``, from array, from asyncronous request
+- populate list
+  - from ``options`` of ``select`` element
+	- from array
+	- from asyncronous request
 - control with mouse or keyboard
 - set handler for value change
 - API (open, close, set, get, clear, destroy)
 - custom style
 - floating label
+- no dependencies
 
 ## Usage
 
-Add ``selector`` class to ``input``, ``select`` or ``div`` element.
+Include style and script in the ``head`` of your document:
 
-Optional ``data-`` attributes:
+```html
+<link href="select.css" rel="stylesheet">
+<script src="select.js"></script> 
+```
 
-- ``data-label`` - label text
-- ``data-value`` - initial value (for ``div`` or ``input``)
-- ``data-src`` - URL to fetch list of items (for ``div`` or ``input``)
-- ``data-size`` - visual size in ``em``s
-
-Initialize with 
+Initialize select with:
 
 ```javascript
 new Select(element, options);
 ```
 
-### Options
+The *element* can be ``input``, ``select`` or ``div`` element.
+
+### Element attributes
+
+Optional attributes of converted elements:
+
+- **data-label** - label text
+- **data-value** - initial value (for ``div`` or ``input``)
+- **data-src** - URL to fetch array of items (for ``div`` or ``input``)
+- **data-size** - visual size in *em*s
+
+### Constructor options
 
 Options passed to constructor will override ``data-`` attributes and ``options`` of ``select`` element.
 
-- ``label`` - label text
-- ``value`` - initial value
-- ``src`` - URL to fetch list of items
-- ``items`` - visual size in ``em``s
+The *options* object may include following keys:
 
+- **label** - label text
+- **items** - array of items
+- **value** - initial value
+- **src** - URL to fetch array of items
+- **size** - visual size in ``em``s
 
 ## API
 

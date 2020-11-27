@@ -50,7 +50,7 @@ class Select{
   }
   
   fill(items) {
-    this.items = Array.prototype.slice.call(items).map(v => ({
+    this.items = [...items].map(v => ({
       id: v.value ?? v.id,
       title: v.label ?? v.title ?? v.name
     }));
