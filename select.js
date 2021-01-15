@@ -23,7 +23,7 @@ class Select{
     this.item = el.appendChild(document.createElement('span'));
     this.label = el.appendChild(document.createElement('label'));
     this.icon = el.appendChild(document.createElement('b'));
-    this.cross = el.appendChild(document.createElement('a'));
+    if (!('req' in opt)) this.cross = el.appendChild(document.createElement('a'));
 
     if (opt.size) this.item.style.width = parseInt(opt.size, 10) + 'em';
     this.label.textContent = opt.label ?? '';
@@ -52,11 +52,11 @@ class Select{
   fill(items) {
     this.items = [...items].map(v => ({
       id: v.value ?? v.id,
-      title: v.label ?? v.title ?? v.name
+      title: v.dataset?.title ?? v.label ?? v.title ?? v.name ?? '',
     }));
     this.items.forEach(item => {
       const li = document.createElement('li');
-      li.textContent = item.title;
+      li.innerHTML = item.title; // textContent
       li.dataset.id = item.id;
       this.list.appendChild(li);
     });
@@ -67,7 +67,8 @@ class Select{
   }
   
   onClick(e) {
-    if (e.target.closest('li')) this.set(e.target.dataset.id);
+    const li = e.target.closest('li');
+    if (li) this.set(li.dataset.id);
     else if (e.target.closest('a')) this.clear();
     this.toggle();
   }
@@ -117,7 +118,7 @@ class Select{
     this.cur = i;
     const filled = (i > -1);
     this.el.classList[filled ? 'add' : 'remove']('selected');
-    this.item.textContent = filled ? this.items[i].title : '';
+    this.item.innerHTML = filled ? this.items[i].title : ''; // textContent
     if (this.input) this.input.value = filled ? this.items[i].id : '';
     this.actuate();
     if (this.handler) this.handler({item: this.get(), target: this});
