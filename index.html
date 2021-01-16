@@ -20,6 +20,7 @@
 						if(h == 'set') s.set(5);
 						else if(h == 'clear') s.clear();
 						else if(h == 'get') console.log('get selected value', s.get());
+						else if(h == 'fill') s.fill([{id:1, name:'Uno'}, {id:2, name:'Dos'}, {id:3, name:'Tres'}], 2);
 						else if(h == 'open') s.open();
 						else if(h == 'close') s.close();
 						else if(h == 'destroy') s.destroy();
@@ -39,6 +40,7 @@
 		</select>
 		<a href="#open" class="control">Open</a>
 		<a href="#close" class="control">Close</a>
+		<a href="#fill" class="control">Fill</a>
 		<a href="#get" class="control">Get</a>
 		<a href="#set" class="control">Set</a>
 		<a href="#clear" class="control">Clear</a>

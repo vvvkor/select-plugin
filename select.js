@@ -15,7 +15,7 @@ class Select{
     el.tabIndex = "0";
     this.el = el;
     if (this.input) {
-      this.input.hidden = true;
+//      this.input.hidden = true;
       this.input.parentNode.insertBefore(el, this.input.nextSibling);
     }
     //this.overlay = el.appendChild(document.createElement('div'));
@@ -39,7 +39,7 @@ class Select{
         .then(() => this.set(opt.value))
     }
     else if (input.options) {
-      this.fill(opt.items ?? input.options);
+      this.fill(opt.items ?? input.options, null, true);
       this.set(opt.value ?? input.value)
     }
     el.addEventListener('focus', e => this.focused = true, false);
@@ -49,17 +49,33 @@ class Select{
     window.addEventListener('keydown', e => this.onKey(e), false);
   }
   
-  fill(items) {
+  fill(items, set, keep) {
     this.items = [...items].map(v => ({
       id: v.value ?? v.id,
       title: v.dataset?.title ?? v.label ?? v.title ?? v.name ?? '',
     }));
+    
+    this.clear();
+    this.list.innerHTML = '';
+    
     this.items.forEach(item => {
       const li = document.createElement('li');
       li.innerHTML = item.title; // textContent
       li.dataset.id = item.id;
       this.list.appendChild(li);
     });
+    
+    if (!keep && this.input?.options) {
+      this.input.innerHTML = '';
+      this.items.forEach(item => {
+        const op = document.createElement('option');
+        op.value = item.id;
+        /*op.dataset.title = */op.textContent = item.title;
+        this.input.appendChild(op);
+      });
+    }
+    
+    if (set != null) this.set(set);
   }
   
   handle(h) {

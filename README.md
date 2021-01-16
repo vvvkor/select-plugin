@@ -94,6 +94,9 @@ select.open();
 // close list
 select.close();
 
+// populate list
+select.fill(items);
+
 // set value
 select.set(value);
 
