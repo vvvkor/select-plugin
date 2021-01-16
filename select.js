@@ -15,7 +15,7 @@ class Select{
     el.tabIndex = "0";
     this.el = el;
     if (this.input) {
-//      this.input.hidden = true;
+      this.input.hidden = true;
       this.input.parentNode.insertBefore(el, this.input.nextSibling);
     }
     //this.overlay = el.appendChild(document.createElement('div'));
