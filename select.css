@@ -13,7 +13,7 @@
 .select>label{position:absolute;top:.42em;left:.3em;padding:0 .2em;color:#999;transition:transform .2s;transform-origin:0 0;}
 .select.open>label, .select.selected>label{background:#fff;transform:translate(0, -.85em) scale(.8);}
 
-.select>span{position:relative;display:inline-block;width:10em;height:1.4em;line-height:1.5;overflow:hidden;border:thin solid #ccc;border-radius:.2em;padding:.2em .5em;background:#fff;white-space:nowrap;}
+.select>span{position:relative;display:inline-block;width:10em;height:1.4em;line-height:1.5;overflow:hidden;border:thin solid #ccc;border-radius:.2em;padding:.2em .5em;background:#fff;white-space:nowrap;box-sizing:content-box;}
 
 .select>b{position:absolute;right:0;top:.3em;padding:.2em .5em;background:#fff;border-right:thin solid transparent;background-clip:padding-box;}
 .select>b:after{content:"\25be";/*"+";*/}
