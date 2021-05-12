@@ -84,7 +84,7 @@ class Select{
   
   onClick(e) {
     const li = e.target.closest('li');
-    if (li) this.set(li.dataset.id);
+    if (li) this.set(li.dataset.id, true);
     else if (e.target.closest('a')) this.clear();
     this.toggle();
   }
@@ -105,7 +105,7 @@ class Select{
       if (this.isOpen()){
         if(e.key.match(/^(Enter|Arrow|Page|Home|End)/)) e.preventDefault();
         if (e.key == 'Enter'){
-          this.set(this.actual.dataset.id);
+          this.set(this.actual.dataset.id, true);
           this.close();
         }
         else if (e.key == 'ArrowDown') this.step('n');
@@ -127,7 +127,7 @@ class Select{
     return this.el.classList.contains('open');
   }
   
-  set(v) {
+  set(v, dispatch) {
     const i = (v === null)
       ? (this.input?.options?.length > 0 ? 0 : -1)
       : this.items.findIndex(item => item.id == v);
@@ -135,13 +135,16 @@ class Select{
     const filled = (i > -1);
     this.el.classList[filled ? 'add' : 'remove']('selected');
     this.item.innerHTML = filled ? this.items[i].title : ''; // textContent
-    if (this.input) this.input.value = filled ? this.items[i].id : '';
+    if (this.input){
+      this.input.value = filled ? this.items[i].id : '';
+      if(dispatch) this.input.dispatchEvent(new Event('input', {bubbles: true}));
+    }
     this.actuate();
     if (this.handler) this.handler({item: this.get(), target: this});
   }
   
   clear() {
-    this.set(null);
+    this.set(null, true);
   }
   
   get() {
