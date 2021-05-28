@@ -39,9 +39,10 @@ class Select{
         .then(() => this.set(opt.value))
     }
     else if (input.options) {
-      this.fill(opt.items ?? input.options, null, true);
+      this.fill(opt.items ?? input.options, null, true)
       this.set(opt.value ?? input.value)
     }
+    if (input) input.addEventListener('input', e => this.set(input.value))
     el.addEventListener('focus', e => this.focused = true, false);
     el.addEventListener('blur', e => { this.focused = false; this.close(); }, false);
     el.addEventListener('click', e => this.onClick(e), false);
