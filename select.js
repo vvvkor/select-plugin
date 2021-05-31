@@ -42,12 +42,12 @@ class Select{
       this.fill(opt.items ?? input.options, null, true)
       this.set(opt.value ?? input.value)
     }
-    if (input) input.addEventListener('input', e => this.set(input.value))
-    el.addEventListener('focus', e => this.focused = true, false);
-    el.addEventListener('blur', e => { this.focused = false; this.close(); }, false);
-    el.addEventListener('click', e => this.onClick(e), false);
-    document.addEventListener('click', e => e.defaultPrevented || el.contains(e.target) ? null : this.close(), false);
-    window.addEventListener('keydown', e => this.onKey(e), false);
+    if (input) input.addEventListener('input', e => this.onInput(e))
+    el.addEventListener('focus', e => this.focused = true);
+    el.addEventListener('blur', e => { this.focused = false; this.close(); });
+    el.addEventListener('click', e => this.onClick(e));
+    document.addEventListener('click', e => e.defaultPrevented || el.contains(e.target) ? null : this.close());
+    window.addEventListener('keydown', e => this.onKey(e));
   }
   
   fill(items, set, keep) {
@@ -81,6 +81,10 @@ class Select{
   
   handle(h) {
     this.handler = h;
+  }
+  
+  onInput(e) {
+    if(!e.defaultPrevented) this.set(e.target.value);
   }
   
   onClick(e) {
@@ -138,7 +142,11 @@ class Select{
     this.item.innerHTML = filled ? this.items[i].title : ''; // textContent
     if (this.input){
       this.input.value = filled ? this.items[i].id : '';
-      if(dispatch) this.input.dispatchEvent(new Event('input', {bubbles: true}));
+      if(dispatch) {
+        const e = new Event('input', {bubbles: true, cancelable: true});
+        e.preventDefault();
+        this.input.dispatchEvent(e);
+      }
     }
     this.actuate();
     if (this.handler) this.handler({item: this.get(), target: this});
